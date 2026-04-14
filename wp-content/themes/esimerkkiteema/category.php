@@ -1,4 +1,5 @@
 <?php
+global $wp_query;
 get_header();
 ?>
     <section class="hero">
@@ -17,16 +18,9 @@ get_header();
     </section>
     <main>
         <section class="products">
-            <h2>Featured Products</h2>
+            <h2><?php single_cat_title(); ?></h2>
             <?php
-            $args = [
-                    'post_type' => 'post',
-                    'tag' => 'featured',
-                    'posts_per_page' => 3
-            ];
-            $products = new WP_Query($args);
-            // print_r($products);
-            generate_articles($products);
+            generate_articles($wp_query);
             ?>
         </section>
     </main>
