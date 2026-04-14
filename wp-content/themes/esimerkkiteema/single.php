@@ -1,7 +1,7 @@
 <?php
 get_header();
 ?>
-    <main>
+    <main class="full-width">
         <section class="single">
             <?php
             if (have_posts()) :
@@ -17,5 +17,4 @@ get_header();
         </section>
     </main>
 <?php
-get_sidebar();
 get_footer();

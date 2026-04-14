@@ -31,3 +31,5 @@ add_action('wp_enqueue_scripts', 'mytheme_enqueue_styles');
 
 // external functions
 require_once( __DIR__ . '/inc/article-function.php' );
+require_once( __DIR__ . '/inc/random-image.php' );
+
