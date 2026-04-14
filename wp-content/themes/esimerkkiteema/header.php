@@ -2,9 +2,9 @@
 <html <?php language_attributes(); ?>>
 
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example WordPress Theme</title>
+    <?php wp_head(); ?>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,15 +12,14 @@
 <div class="container">
     <header class="page-header">
         <div class="header-top-left">
-            <img src="//placehold.it/200x100?text=Logo" alt="Logo">
+            <?php the_custom_logo(); ?>
         </div>
         <div class="header-top-right">
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">About us</a></li>
-                </ul>
-            </nav>
+            <?php
+            wp_nav_menu([
+                    "menu" => "main-menu",
+                    "container" => "nav"
+            ]);
+            ?>
         </div>
     </header>

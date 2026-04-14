@@ -15,29 +15,21 @@ get_header();
             endif;
             ?>
         </div>
-        <img src="map.svg" alt="Hero">
+        <?php the_custom_header_markup(); ?>
     </section>
     <main>
         <section class="products">
             <h2>Featured Products</h2>
-            <article class="product">
-                <img src="//placehold.it/200x200?text=Product" alt="Product">
-                <h3>Product 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos.</p>
-                <a href="#">Read More</a>
-            </article>
-            <article class="product">
-                <img src="//placehold.it/200x200?text=Product" alt="Product">
-                <h3>Product 2</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos.</p>
-                <a href="#">Read More</a>
-            </article>
-            <article class="product">
-                <img src="//placehold.it/200x200?text=Product" alt="Product">
-                <h3>Product 3</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos.</p>
-                <a href="#">Read More</a>
-            </article>
+            <?php
+            $args = [
+                    'post_type' => 'post',
+                    'tag' => 'featured',
+                    'posts_per_page' => 3
+            ];
+            $products = new WP_Query($args);
+           // print_r($products);
+            generate_articles($products);
+            ?>
         </section>
     </main>
 <?php
