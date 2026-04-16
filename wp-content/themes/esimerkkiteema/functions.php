@@ -33,6 +33,26 @@ function mytheme_enqueue_styles()
 
 add_action('wp_enqueue_scripts', 'mytheme_enqueue_styles');
 
+// kustomi haku
+function search_filter($query) {
+    if ($query->is_search) {
+        $query->set('category_name', 'products');
+    }
+    return $query;
+}
+
+add_filter('pre_get_posts','search_filter');
+
+// muokataan muruja
+function my_breadcrumb_title_swapper( $title,  $type, $id ) {
+    if ( in_array( 'home', $type ) ) {
+        $title = __( 'Home' );
+    }
+
+    return $title;
+}
+add_filter( 'bcn_breadcrumb_title', 'my_breadcrumb_title_swapper', 3, 10 );
+
 // external functions
 require_once(__DIR__ . '/inc/article-function.php');
 require_once(__DIR__ . '/inc/random-image.php');

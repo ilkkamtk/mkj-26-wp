@@ -75,6 +75,7 @@ footer {
     justify-content: space-between;
     background-image: url('images/wave.svg');
     background-repeat: no-repeat;
+    width: 100%;
 }
 
 .header-top-left,
