@@ -19,17 +19,26 @@ get_header();
         <section class="products">
             <?php
             $args = [
-              "child_of" => get_queried_object_id(),
-              "hide_empty" => true,
+                    "child_of" => get_queried_object_id(),
+                    "hide_empty" => true,
             ];
             $subcategories = get_categories($args);
-            print_r($subcategories);
+
             ?>
 
-
-            <h2><?php single_cat_title(); ?></h2>
             <?php
-            generate_articles($wp_query);
+            foreach ($subcategories as $subcategory):
+                ?>
+                <h2><?php echo $subcategory->name; ?></h2>
+                <?php
+                $args = [
+                        'post_type'      => 'post',
+                        'cat'            => $subcategory->term_id,
+                        'posts_per_page' => 2,
+                ];
+                $sub_category_products = new WP_Query( $args );
+                generate_articles( $sub_category_products );
+            endforeach;
             ?>
         </section>
     </main>
