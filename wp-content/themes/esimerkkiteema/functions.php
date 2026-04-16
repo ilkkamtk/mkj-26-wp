@@ -9,6 +9,8 @@ function theme_setup(): void
         'width' => 200,
         'flex-height' => true,
     ));
+    // activate search
+    add_theme_support('html5', ['search-form']);
 
     // Set the default Post Thumbnail size
     set_post_thumbnail_size(200, 200, true); // 200px wide by 200px high, hard crop mode
@@ -17,19 +19,21 @@ function theme_setup(): void
     add_image_size('custom-header', 1200, 400, true); // Custom header size
 
     // register menu
-    register_nav_menu( 'main-menu', __( 'Main Menu' ) );
+    register_nav_menu('main-menu', __('Main Menu'));
+
 }
 
 add_action('after_setup_theme', 'theme_setup');
 
 // oikea tapa liittää CSS wp-templateen
-function mytheme_enqueue_styles(){
+function mytheme_enqueue_styles()
+{
     wp_enqueue_style('main', get_stylesheet_uri());
 }
 
 add_action('wp_enqueue_scripts', 'mytheme_enqueue_styles');
 
 // external functions
-require_once( __DIR__ . '/inc/article-function.php' );
-require_once( __DIR__ . '/inc/random-image.php' );
+require_once(__DIR__ . '/inc/article-function.php');
+require_once(__DIR__ . '/inc/random-image.php');
 

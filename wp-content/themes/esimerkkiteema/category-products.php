@@ -32,12 +32,18 @@ get_header();
                 <h2><?php echo $subcategory->name; ?></h2>
                 <?php
                 $args = [
-                        'post_type'      => 'post',
-                        'cat'            => $subcategory->term_id,
+                        'post_type' => 'post',
+                        'cat' => $subcategory->term_id,
                         'posts_per_page' => 2,
                 ];
-                $sub_category_products = new WP_Query( $args );
-                generate_articles( $sub_category_products );
+                $sub_category_products = new WP_Query($args);
+                generate_articles($sub_category_products);
+                ?>
+                <article class="product all">
+                    <a href="<?php echo get_category_link($subcategory->term_id); ?>">View All</a>
+                </article>
+            <?php
+                wp_reset_postdata();
             endforeach;
             ?>
         </section>
