@@ -141,6 +141,8 @@ fabric.properties
 
 /wp-content/plugins/classic-editor
 /wp-content/plugins/ssh-sftp-updater-support
+/wp-content/plugins/breadcrumb-navxt
+/wp-content/plugins/safe-svg
 
 # Configuration
 wp-config.php

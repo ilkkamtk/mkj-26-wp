@@ -6,8 +6,10 @@ function generate_articles($products): void
             $products->the_post();
             ?>
             <article class="product">
-                <img src="//placehold.it/200x200?text=Product" alt="Product">
-                <?php the_title("<h3>", "</h3>"); ?>
+                <?php
+                the_post_thumbnail();
+                the_title("<h3>", "</h3>");
+                ?>
                 <p>
                     <?php
                     the_excerpt();

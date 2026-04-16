@@ -13,6 +13,7 @@ get_header();
             else :
                 _e('Sorry, no posts matched your criteria.', 'ilen-esimerkki');
             endif;
+            echo do_shortcode('[like_button]');
             ?>
         </section>
     </main>
