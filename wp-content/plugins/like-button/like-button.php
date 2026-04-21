@@ -72,31 +72,49 @@ function add_like(): void
     $post_id = $_POST['post_id'];
     $user_id = $_POST['user_id'];
 
-
-    // hae onko käyttäjä jo tykännyt (select)
-    // jos on, poista tykkäys ja exit (delete)
-
-    $data = array(
+    $data = [
         'post_id' => $post_id,
         'user_id' => $user_id
-    );
+    ];
 
-    $format = array(
+    $format = [
         '%d',
         '%d',
+    ];
+
+    // hae onko käyttäjä jo tykännyt (select)
+    $preparedQuery = $wpdb->prepare(
+        "SELECT id FROM $table_name WHERE post_id = %d and user_id = %d",
+        $data
     );
 
-    $success = $wpdb->insert($table_name, $data, $format);
+    $results = $wpdb->get_results($preparedQuery);
 
-    if ($success) {
-        echo 'Like added';
+    // jos ei ole tykätty, lisätään
+    if (count($results) == 0) {
+
+        $success = $wpdb->insert($table_name, $data, $format);
+
+        if ($success) {
+            echo 'Like added';
+        } else {
+            echo 'Error adding like';
+        }
+
+
+        wp_redirect($_SERVER['HTTP_REFERER']);
+        exit;
     } else {
-        echo 'Error adding like';
+        // poista tykkäys
+
+        $success = $wpdb->delete($table_name, $data, $format);
+
+        if ($success) {
+            echo like_button(['post_id' => $post_id]);
+        } else {
+            echo 'Error deleting data';
+        }
     }
-
-
-    wp_redirect($_SERVER['HTTP_REFERER']);
-    exit;
 }
 
 add_action('admin_post_add_like', 'add_like');
