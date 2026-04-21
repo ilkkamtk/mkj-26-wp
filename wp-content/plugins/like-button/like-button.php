@@ -124,7 +124,7 @@ add_action('admin_post_add_like', 'add_like');
 function my_theme_load_ionicons_font(): void
 {
     // Load Ionicons font from CDN
-    wp_enqueue_script('my-theme-ionicons', 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js', array(), '5.2.3', true);
+    wp_enqueue_script('my-theme-ionicons', 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js', [], '5.2.3', true);
 }
 
 add_action('wp_enqueue_scripts', 'my_theme_load_ionicons_font');
