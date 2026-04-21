@@ -101,9 +101,6 @@ function add_like(): void
             echo 'Error adding like';
         }
 
-
-        wp_redirect($_SERVER['HTTP_REFERER']);
-        exit;
     } else {
         // poista tykkäys
 
@@ -115,7 +112,11 @@ function add_like(): void
             echo 'Error deleting data';
         }
     }
+    wp_redirect($_SERVER['HTTP_REFERER']);
+    exit;
 }
+
+
 
 add_action('admin_post_add_like', 'add_like');
 
