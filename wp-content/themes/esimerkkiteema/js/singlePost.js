@@ -13,6 +13,7 @@ const getSinglePost = (id) => {
   jQuery.post(url, data).done((response) => {
     modalContent.empty();
     modalContent.html(`<h2>${response.post_title}</h2>`);
+    console.log(response.post_content);
     modalContent.append(response.post_content);
     modal[0].showModal();
   });

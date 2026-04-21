@@ -33,13 +33,17 @@ register_activation_hook(__FILE__, 'create_table');
 
 // Add like button
 
-function like_button(): string
+function like_button($atts): string
 {
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'likes';
 
     $post_id = get_the_ID();
+    if (isset($atts['id'])) {
+        $post_id = $atts['id'];
+    }
+
     $user_id = get_current_user_id();
 
     $results = $wpdb->get_results("SELECT * FROM $table_name WHERE post_id = $post_id");
@@ -115,7 +119,6 @@ function add_like(): void
     wp_redirect($_SERVER['HTTP_REFERER']);
     exit;
 }
-
 
 
 add_action('admin_post_add_like', 'add_like');
